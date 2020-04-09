@@ -18,14 +18,12 @@ export default class NumericInput extends Component {
         }
         this.ref = null
     }
-    componentWillReceiveProps(props) {
-        const initSent = !(props.initValue !== 0 && !props.initValue)
-        if (props.initValue !== this.state.value && initSent) {
-
+    componentDidUpdate(prevProps) {
+        if (prevProps.value !== this.props.value) {
             this.setState({
-                value: props.initValue,
-                lastValid: props.initValue,
-                stringValue: props.initValue.toString()
+                value: this.props.value,
+                lastValid: this.props.value,
+                stringValue: this.props.value.toString()
             });
         }
     }
